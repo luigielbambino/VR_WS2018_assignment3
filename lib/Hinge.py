@@ -5,6 +5,7 @@ import avango
 import avango.gua
 import avango.script
 from avango.script import field_has_changed
+from lib.KeyboardInput import KeyboardInput
 
 import lib.Utilities
 
@@ -20,7 +21,6 @@ class Accumulator(avango.script.Script):
     sf_mat = avango.gua.SFMatrix4()
     sf_mat.value = avango.gua.make_identity_mat() # initialize field with identity matrix
 
-
     ## constructor
     def __init__(self):
         self.super(Accumulator).__init__() # call base-class constructor
@@ -29,10 +29,10 @@ class Accumulator(avango.script.Script):
     ## callback functions
     def evaluate(self):
         # perform update when fields change (with dependency evaluation)
-        print("accum eval")
-        
+        print(self.sf_rot_input.value)
+        print(self.sf_mat.value )
         # ToDo: accumulate rotation input here        
-        # self.sf_mat.value = 
+        self.sf_mat.value = self.sf_mat.value * avango.gua.make_rot_mat(self.sf_rot_input.value,0,1,0)
 
 
 class Constraint(avango.script.Script):
@@ -65,7 +65,6 @@ class Constraint(avango.script.Script):
 
         # ToDo: apply rotation constraints here        
         # self.sf_mat.value = 
-
 
 
 class Hinge:
@@ -114,5 +113,6 @@ class Hinge:
         # ...
 
         # ToDo: init field connections here
-        # ...
+        self.acc.sf_rot_input.connect_from(SF_ROT_INPUT)
+        self.hinge_node.Transform.connect_from(self.acc.sf_mat)
         

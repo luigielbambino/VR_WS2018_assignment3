@@ -82,10 +82,10 @@ class Crane:
             )
 
         ## fourth hinge
-        self.hinge3 = Hinge(
-            PARENT_NODE = self.arm3.arm_end_node,
-            DIAMETER = 0.02,
-            HEIGHT = 0.01,
-            ROT_OFFSET_MAT = avango.gua.make_rot_mat(90.0,1,0,0),
-            )
+        #self.hinge3 = Hinge(
+            #PARENT_NODE = self.arm3.arm_end_node,
+            #DIAMETER = 0.02,
+            #HEIGHT = 0.01,
+            #ROT_OFFSET_MAT = avango.gua.make_rot_mat(90.0,1,0,0),
+            #)
 

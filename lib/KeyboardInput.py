@@ -24,9 +24,9 @@ class KeyboardInput(avango.script.Script):
     
     sf_fps_toggle_button = avango.SFBool()
     
-    sf_rot_input0 = avango.SFFloat()
-    sf_rot_input1 = avango.SFFloat()
-    sf_rot_input2 = avango.SFFloat()    
+    sf_rot_input0 = avango.SFFloat() ## left/right
+    sf_rot_input1 = avango.SFFloat() ## up/down
+    sf_rot_input2 = avango.SFFloat() ## page-up/page-down   
 
     sf_max_fps = avango.SFFloat()
     sf_max_fps.value = 60.0 # initial value
@@ -64,10 +64,13 @@ class KeyboardInput(avango.script.Script):
                 print("fast:", self.sf_max_fps.value, "FPS")
 
 
+        
+
+
     def evaluate(self): # perform update when fields change (with dependency evaluation)
 
         # ToDo: calculate rotation input per frame that corresponds to given velocity (self.rot_velocity)
-        _rot_input = 1.0
+        _rot_input = self.rot_velocity / self.sf_max_fps.value
 
         # ToDo: adapt rotation input to varying frame rates
         # time.time() # absolute timestamp
