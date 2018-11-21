@@ -84,3 +84,11 @@ class Crane:
             DIAMETER = 0.007,
             ROT_OFFSET_MAT = avango.gua.make_rot_mat(45.0,0,1,0) * avango.gua.make_rot_mat(-90.0,1,0,0),
             )
+
+        ## Hook
+        self.hook0 = Hook()
+        self.hook0.my_constructor(
+            PARENT_NODE = self.arm3.arm_end_node,
+            SIZE = 0.02,
+            TARGET_LIST = TARGET_LIST,
+            )
