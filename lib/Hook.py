@@ -29,17 +29,12 @@ class Hook(avango.script.Script):
         self.TARGET_LIST = TARGET_LIST
         
         # ToDo: init scenegraph node(s) here
-        ## get unique id for this instance
-        self.id = Hook.number_of_instances
-        Hook.number_of_instances += 1
-
-        ## scenegraph nodes
-        self.hook_node = avango.gua.nodes.TransformNode(Name = "hook{0}_node".format(str(self.id)))
+        self.hook_node = avango.gua.nodes.TransformNode(Name = "hook_node")
         PARENT_NODE.Children.value.append(self.hook_node)
 
         _loader = avango.gua.nodes.TriMeshLoader() # get trimesh loader to load external tri-meshes
 
-        self.hook_geometry = _loader.create_geometry_from_file("hook{0}_geometry".format(str(self.id)), "data/objects/sphere.obj", avango.gua.LoaderFlags.DEFAULTS)
+        self.hook_geometry = _loader.create_geometry_from_file("hook_geometry", "data/objects/sphere.obj", avango.gua.LoaderFlags.DEFAULTS)
         self.hook_geometry.Transform.value = avango.gua.make_scale_mat(SIZE, SIZE, SIZE)
         self.hook_geometry.Material.value.set_uniform("Color", avango.gua.Vec4(0.0,1.0,0.0,1.0))
         self.hook_node.Children.value.append(self.hook_geometry)

@@ -86,8 +86,8 @@ class Crane:
             )
 
         ## Hook
-        self.hook0 = Hook()
-        self.hook0.my_constructor(
+        self.hook = Hook()
+        self.hook.my_constructor(
             PARENT_NODE = self.arm3.arm_end_node,
             SIZE = 0.02,
             TARGET_LIST = TARGET_LIST,
